@@ -16,13 +16,13 @@ Function":
 fun sayHello (greeting:String, ItemToGreet:String) = println ("Hello $itemToGreet")
 ```
 Data Classes: purpose is to hold data
-'equals()'/ 'hashCode()' pair
+`equals()`/ `hashCode()` pair
 
-'toString()' of the form "User(name=John, age=42)"
+`toString()` of the form "User(name=John, age=42)"
 
-'componentN()' functions corresponding to the properties in their order of declaration.
+`componentN()` functions corresponding to the properties in their order of declaration.
 
-'copy()' function (see below).
+`copy()` function (see below).
 ```kotlin
 data class User(val name: String, val age: Int)
 ```
