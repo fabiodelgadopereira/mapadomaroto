@@ -8,54 +8,38 @@ class Solution{
 	}
 }
 ```
-Stream:
+Funções lambda:
 ```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 class Solution {
-    public static void main(String args[] ) throws Exception {
-		new Solution().getValues()
-			.map(p-> p.getAge()) 
-			.filter(p -> p>10) 
-			.forEach(System.out::println);
-	}
+    public static void main(String args[]) throws Exception {
 
-    private Stream<Person> getValues() {
-        return Stream.of(new Person("Paul", 24, 20000), 
-                         new Person("Mark", 30, 30000), 
-                         new Person("Will", 28, 28000),
-                         new Person("William", 28, 28000));
+        List<Integer> numeros =  Arrays.asList(1, 2, 3, 5, 8, 13, 21, 34);                                       
+
+        // soma 2 em um array de numeros e imprime
+        numeros.stream().map(c ->  c+2).forEach(System.out::println);
+
+        
+        Stream<Person> pessoas = Stream.of(new Person("Paul", 24, 20000),
+                                           new Person("Mark", 30, 30000),
+                                           new Person("Will", 28, 28000),
+                                           new Person("William", 28, 28000));
+
+        // imprimir todos os nomes da lista
+        pessoas.forEach(p ->System.out.println(p.getName()));
+
+        // filtra apenas pessoas com idade maior que 28 anos
+        pessoas.filter(p -> p.getAge()>28);
+
+        // Transformar idades em um stream de idades
+        IntStream pontos  = pessoas.mapToInt(c -> c.getAge());
+        
     }
-
-    class Person {
-
-        private String name;
-        private int age;
-        private long salary;
-
-        public int getAge() {
-            return age;
-        }
-
-        Person(String name, int age, long salary) {
-
-            this.name = name;
-            this.age = age;
-            this.salary = salary;
-        }
-    }
+ }
 }
 ```
-Data Classes: purpose is to hold data
-'equals()'/ 'hashCode()' pair
-
-'toString()' of the form "User(name=John, age=42)"
-
-'componentN()' functions corresponding to the properties in their order of declaration.
-
-'copy()' function (see below).
-```kotlin
-data class User(val name: String, val age: Int)
-```
-
 
