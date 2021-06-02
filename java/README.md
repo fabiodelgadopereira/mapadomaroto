@@ -29,12 +29,31 @@ class Solution {
                                            new Person("Will", 28, 28000),
                                            new Person("William", 28, 28000));
 
+        // forEach                                   
         // imprimir todos os nomes da lista
         pessoas.forEach(p ->System.out.println(p.getName()));
 
+        // filter
         // filtra apenas pessoas com idade maior que 28 anos
         pessoas.filter(p -> p.getAge()>28);
+      
+        // sorted
+        //ordenar pelo atributo da classe
+        pessoas.sorted(Comparator.comparing(Person::getAge));
 
+        // allMatch
+        //Retorna true se todos os elementos do fluxo correspondem ao predicado fornecido
+        boolean adult =  pessoas.allMatch(p-> p.getAge()>18);
+       
+        // anyMatch
+        // Retorna true se qualquer um dos elementos do fluxo corresponde ao predicado fornecido
+        boolean underage =  pessoas.anyMatch(p-> p.getAge()>18);
+      
+        // noneMatch
+        // Retorna true se nenhum dos elementos do fluxo corresponde ao predicado fornecido.
+        boolean under =  pessoas.noneMatch(p-> p.getAge()>18);
+
+        // mapToInt
         // Transformar idades em um stream de idades
         IntStream pontos  = pessoas.mapToInt(c -> c.getAge());
         

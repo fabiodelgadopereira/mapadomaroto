@@ -32,24 +32,38 @@ internal object Solution {
         val numeros = Arrays.asList(1, 2, 3, 5, 8, 13, 21, 34)
 
         // soma 2 em um array de numeros e imprime
-        numeros.stream().map { c: Int -> c + 2 }.forEach { x: Int? ->
-            println(
-                x
-            )
-        }
-        val pessoas = Stream.of(
-            Person("Paul", 24, 20000),
-            Person("Mark", 30, 30000),
-            Person("Will", 28, 28000),
-            Person("William", 28, 28000)
-        )
+        numeros.stream().map { c: Int -> c + 2 }.forEach { x: Int? -> println(x) }
 
+        val pessoas = Stream.of(Person("Paul", 24, 20000),
+                Person("Mark", 30, 30000),
+                Person("Will", 28, 28000),
+                Person("William", 28, 28000))
+
+        // forEach
         // imprimir todos os nomes da lista
         pessoas.forEach { p: Person -> println(p.name) }
 
+        // filter
         // filtra apenas pessoas com idade maior que 28 anos
         pessoas.filter { p: Person -> p.age > 28 }
 
+        // sorted
+        //ordenar pelo atributo da classe
+        pessoas.sorted(Comparator.comparing(Person::age))
+
+        // allMatch
+        //Retorna true se todos os elementos do fluxo correspondem ao predicado fornecido
+        val adult = pessoas.allMatch { p: Person -> p.age > 18 }
+
+        // anyMatch
+        // Retorna true se qualquer um dos elementos do fluxo corresponde ao predicado fornecido
+        val underage = pessoas.anyMatch { p: Person -> p.age > 18 }
+
+        // noneMatch
+        // Retorna true se nenhum dos elementos do fluxo corresponde ao predicado fornecido.
+        val under = pessoas.noneMatch { p: Person -> p.age > 18 }
+
+        // mapToInt
         // Transformar idades em um stream de idades
         val pontos = pessoas.mapToInt { c: Person -> c.age }
     }
