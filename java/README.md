@@ -23,7 +23,12 @@ class Solution {
         // soma 2 em um array de numeros e imprime
         numeros.stream().map(c ->  c+2).forEach(System.out::println);
 
+        // reduce                                   
+        // Combinar elementos, no caso abaxio é uma soma.
+        int result = numeros.stream().reduce(0, (subtotal, element) -> subtotal + element);
         
+
+
         Stream<Person> pessoas = Stream.of(new Person("Paul", 24, 20000),
                                            new Person("Mark", 30, 30000),
                                            new Person("Will", 28, 28000),
@@ -41,6 +46,14 @@ class Solution {
         //ordenar pelo atributo da classe
         pessoas.sorted(Comparator.comparing(Person::getAge));
 
+        // max
+        // Encontra o maior de uma lista
+        Person older =  pessoas.max(Comparator.comparing(Person::getAge)).get();
+
+        //min
+        // Encontra o menor de uma lista
+        Person younger =  pessoas.min(Comparator.comparing(Person::getAge)).get();
+
         // allMatch
         //Retorna true se todos os elementos do fluxo correspondem ao predicado fornecido
         boolean adult =  pessoas.allMatch(p-> p.getAge()>18);
@@ -53,6 +66,11 @@ class Solution {
         // Retorna true se nenhum dos elementos do fluxo corresponde ao predicado fornecido.
         boolean under =  pessoas.noneMatch(p-> p.getAge()>18);
 
+        // Group by 
+        // agregar uma única propriedade dos elementos ou apenas contar o número de elementos por grupo
+        pessoas.collect(Collectors.groupingBy(foo -> foo.getAge(), Collectors.counting()))
+               .forEach((id,count)->System.out.println(id+"\t"+count));
+        
         // mapToInt
         // Transformar idades em um stream de idades
         IntStream pontos  = pessoas.mapToInt(c -> c.getAge());
