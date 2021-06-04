@@ -14,13 +14,21 @@ Variaveis:
 var x = 1 //general variable, assigned multiple times.
 val y = 2 //immutable , is same as the final modifier in java
 ```
-Function":
+Function:
 ```kotlin
 fun sayHello (greeting:String, ItemToGreet:String) = println ("Hello $itemToGreet")
 ```
 Data Classes: Não é necessario implementar metodos get() e set()
 ```kotlin
 data class User(val name: String, val age: Int)
+```
+Tipo nullable (Int?); o valor default para o argumento:
+```kotlin
+val age: Int? = null
+```
+O operador Elvis (?:) devolve zero se age for null.:
+```kotlin
+pessoas.map { it.age ?: 0 + 2}
 ```
 Colletions:
 ```kotlin
@@ -40,7 +48,7 @@ internal object Solution {
 
         // map
         // soma 2 em um array de numeros e imprime
-        println( pessoas.map { it.age + 2})
+        println( pessoas.map { it.age + 2} )
 
         // filter
         // filtra apenas pessoas com idade maior que 25 anos
