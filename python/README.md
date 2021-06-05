@@ -22,3 +22,14 @@ print ("Digite o vetor separado por espaço:")
 N = list(map(int, input().split()))
 print (N)
 ```
+Diferentes formas de print:
+```python
+print("Hello World!", end = '')
+print('\n')
+
+print(*a) 
+// 1 2 3 4 5
+
+print(*a, sep = ", ") 
+ // 1, 2, 3, 4, 5
+```
