@@ -79,4 +79,42 @@ class Solution {
  }
 }
 ```
+Complete the palindromeIndex function below
+```java
+static int palindromeIndex(String line) {                  
+            char [] chars = line.toCharArray();
+    int ret = -1;
+
+    for( int i = 0,j = line.length() - 1; j >= i; i++, j--)
+    {
+            if ( chars[i] != chars[j] )
+            {                   
+                String before = line.substring(0, i);
+                String after = line.substring(i + 1, line.length());
+                if ( checkPalindrome(before + after) )
+                {
+                    return i;
+                }
+                else
+                {
+                    return j;
+                }
+            }
+    }
+    return ret;
+}
+public static boolean checkPalindrome(String str)
+{
+    for( int i = 0, j = str.length() - 1; j >= i; i++,j-- )
+    {
+        if ( str.charAt(i) != str.charAt(j) )
+        {
+            return false;
+        }
+    }
+    return true;
+    ///return IntStream.range(0, s.length() / 2)
+    .noneMatch(i -> s.charAt(i) != s.charAt(s.length() - i - 1));
+}
+```
 
