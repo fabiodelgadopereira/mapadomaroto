@@ -2,19 +2,36 @@
 
 Kotlin online: https://play.kotlinlang.org 
 
-
-Exemplo básico
+## Compilação:
+```bash
+kotlinc <arquivo-fonte-ou-diretorio> -include-runtime -d <nome-do-jar>
+java -jar <nome-do-jar>
+}
+```
+## Exemplo básico
 ```kotlin
 fun main(){ 
   println("Coding is fun!")
 }
 ```
-Variaveis:
+## Uma Amostra inicial de Kotlin:
+<img src="/kotlin/assets/classe.PNG" alt="drawing" width="440"/>
+
+## Variaveis:
+Em Java, iniciamos uma declaração de variável com um tipo. Isso não funcionaria em Kotlin porque você pode omitir os tipos de muitas declarações de veriaveis. Portanto, em Kotlin, devemos começar com uma palavra reservada, e voce pode (ou não) colocar o tipo depois do nome da variável.
 ```kotlin
 var x = 1 //general variable, assigned multiple times.
-val y = 2 //immutable , is same as the final modifier in java
+val y = 2 //(final) immutable , is same as the final modifier in java
+val s: String = null //pode ser null
+val s2: String = "" // Não pode ser null
 ```
-Function:
+## Funções:
+Toda variável e toda expressão tem um tipo, e toda função tem um tipo de retorno. Porém, para funções com corpo de expressão, o compilador é capaz de analisar a expressão usada como corpo da função e utilizar seu tipo como o tipo de retorno da função, mesmo quando ele não for digitado explicitamente. Esse tipo de análise geralmente é chamado de inferência de tipo (type inference)
+
+<p align="center">
+  <img src="/kotlin/assets/funcoes.PNG" alt="drawing" width="400"/>
+</p>
+
 ```kotlin
 fun sayHello (greeting:String, ItemToGreet:String) = println ("Hello $itemToGreet")
 ```
@@ -95,18 +112,4 @@ internal object Solution {
 }
 
 data class Person(val name: String, val age: Int)
-```
-Exemplo livro:
-```kotlin
-data class Person(val name: String, val age: Int?=null)
-
-fun main (args: Array<String>){
-    
-    val persons = listOf(Person("Alice"),
-                        Person("Bob",age = 29))
-    
-    val oldest = persons.maxByOrNull({ it.age ?: 0 }) 
-    
-    println("The oldest is $oldest")
-}
 ```
