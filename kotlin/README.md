@@ -15,7 +15,7 @@ fun main(){
 }
 ```
 Uma Amostra inicial de Kotlin
-![amostra de classe](/assets/classe.PNG)
+![amostra de classe](/kotlin/assets/classe.PNG)
 ## Variaveis:
 Em Java, iniciamos uma declaração de variável com um tipo. Isso não funcionaria em Kotlin porque você pode omitir os tipos de muitas declarações de veriaveis. Portanto, em Kotlin, devemos começar com uma palavra reservada, e voce pode (ou não) colocar o tipo depois do nome da variável.
 ```kotlin
@@ -27,7 +27,7 @@ val s2: String = "" // Não pode ser null
 ## Funções:
 Toda variável e toda expressão tem um tipo, e toda função tem um tipo de retorno. Porém, para funções com corpo de expressão, o compilador é capaz de analisar a expressão usada como corpo da função e utilizar seu tipo como o tipo de retorno da função, mesmo quando ele não for digitado explicitamente. Esse tipo de análise geralmente é chamado de inferência de tipo (type inference)
 
-![amostra de classe](/assets/funcoes.PNG)
+![amostra de classe](/kotlin/assets/funcoes.PNG)
 
 ```kotlin
 fun sayHello (greeting:String, ItemToGreet:String) = println ("Hello $itemToGreet")
