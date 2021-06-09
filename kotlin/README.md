@@ -48,9 +48,9 @@ O operador Elvis (?:) devolve zero se age for null.:
 pessoas.map { it.age ?: 0 + 2}
 ```
 ## enum 
-• Esse é um caso raro onde uma declaração em Kotlin usa mais palavras chave do que o correspondente em Java: *enum class* vs somente *enum* 
-• Em Kotlin, *enum* é chamado de soft-keyword 
-• Significado especial quando ela vem antes de *class*, mas podemos usá-la como um nome regular em outros lugares (*val* enum = "abc") 
+• Esse é um caso raro onde uma declaração em Kotlin usa mais palavras chave do que o correspondente em Java: *enum class* vs somente *enum* <br>
+• Em Kotlin, *enum* é chamado de soft-keyword <br>
+• Significado especial quando ela vem antes de *class*, mas podemos usá-la como um nome regular em outros lugares (*val* enum = "abc") <br>
 • Assim como em Java, enums não são lista de valores: podemos declarar propriedades e métodos em classes Enum 
 ```kotlin
 enum class Color(
@@ -64,10 +64,10 @@ enum class Color(
 }
 ```
 ## when
-• *when* é um substituto do switch do Java 
-• Porém mais poderoso e é usado mais frequentemente 
-• *when* é uma expressão que retorna um valor (corpo de expressão), assim como o *if*. 
-• Não precisamos escrever afirmações *break* em cada branch, como em Java 
+• *when* é um substituto do switch do Java <br>
+• Porém mais poderoso e é usado mais frequentemente <br>
+• *when* é uma expressão que retorna um valor (corpo de expressão), assim como o *if*. <br>
+• Não precisamos escrever afirmações *break* em cada branch, como em Java <br>
 • Podemos também combinar múltiplos valores no mesmo branch separando por vírgulas
 ```kotlin
 fun obterTemperatura(cor: Color): String {
