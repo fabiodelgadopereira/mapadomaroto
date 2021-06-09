@@ -47,6 +47,56 @@ O operador Elvis (?:) devolve zero se age for null.:
 ```kotlin
 pessoas.map { it.age ?: 0 + 2}
 ```
+## enum 
+• Esse é um caso raro onde uma declaração em Kotlin usa mais palavras chave do que o correspondente em Java: *enum class* vs somente *enum* 
+• Em Kotlin, *enum* é chamado de soft-keyword 
+• Significado especial quando ela vem antes de *class*, mas podemos usá-la como um nome regular em outros lugares (*val* enum = "abc") 
+• Assim como em Java, enums não são lista de valores: podemos declarar propriedades e métodos em classes Enum 
+```kotlin
+enum class Color(
+	val r: Int, val g: Int, val b:Int
+){
+    RED(255, 0, 0), ORANGE(255, 165, 0),
+    YELLOW(255, 255, 0), GREEN(0, 255, 0), BLUE(0, 0, 255),
+    INDIGO(75, 0, 130), VIOLET(238, 130, 238);
+    
+    fun rgb() = (r * 256 + g) * 256 + b
+}
+```
+## when
+• *when* é um substituto do switch do Java 
+• Porém mais poderoso e é usado mais frequentemente 
+• *when* é uma expressão que retorna um valor (corpo de expressão), assim como o *if*. 
+• Não precisamos escrever afirmações *break* em cada branch, como em Java 
+• Podemos também combinar múltiplos valores no mesmo branch separando por vírgulas
+```kotlin
+fun obterTemperatura(cor: Color): String {
+    return when(cor){
+        Color.RED, Color.ORANGE, Color.YELLOW -> "Quente"
+        Color.GREEN -> "Neutro"
+        Color.BLUE -> "Frio"
+    }
+}
+```
+A biblioteca padrão de Kotlin contém uma função *setOf* que cria um *Set* contendo os objetos especificados como seus argumentos. Um conjunto (set) é uma coleção na qual a ordem dos itens não importa; dois conjuntos são iguais se contivertem os mesmo itens. Assim, se os conjuntos *setOf(c1, c2)* e *setOf(RED, YELLOW)* forem iguais, é sinal de que c1 é RED e c2 é YELLOW ou vice-versa.
+```kotlin
+fun mix (c1: Color, c2: Color) = 
+    when (setOf(c1, c2)) {
+        setOf(Color.RED, Color.YELLOW) -> Color.ORANGE
+        setOf(Color.YELLOW, Color.BLUE) -> Color.GREEN
+        else -> throw Exception("Dirty color")
+        
+    }
+```
+Para testes do *enum* e *when*
+```kotlin
+fun main() {
+var temp  = obterTemperatura(Color.RED)
+println(temp)
+var mistura  = mix(Color.RED, Color.YELLOW)
+println(mistura)
+}
+```
 Colletions:
 ```kotlin
 internal object Solution {
