@@ -97,7 +97,7 @@ var mistura  = mix(Color.RED, Color.YELLOW)
 println(mistura)
 }
 ```
-Colletions:
+## Colletions:
 ```kotlin
 internal object Solution {
     @Throws(Exception::class)
