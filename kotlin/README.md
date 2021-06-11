@@ -199,11 +199,12 @@ data class Person(val name: String, val age: Int)
 <p align="center">
   <img src="/kotlin/assets/data-structure.PNG" alt="drawing" width="400"/>
 </p>
+
 ```kotlin
 fun main()  {
     
 // Array List
-// dimensionado dinamicamente,com elementos sejam acessados diretamente.
+// dimensionado dinamicamente, com elementos sejam acessados diretamente.
 // Quando um elemento é adicionado, ele é colocado na matriz. Se o array não
 //  for grande o suficiente, um novo array maior é criado para substituir o
 //  antigo e o antigo é removido.
