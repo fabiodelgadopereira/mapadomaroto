@@ -197,7 +197,7 @@ data class Person(val name: String, val age: Int)
 ```
 ## Data Structure:
 <p align="center">
-  <img src="/kotlin/assets/data-structure.PNG" alt="drawing" width="400"/>
+  <img src="/kotlin/assets/data-structure.png" alt="drawing" width="400"/>
 </p>
 
 ```kotlin
