@@ -31,21 +31,31 @@ Toda variável e toda expressão tem um tipo, e toda função tem um tipo de ret
 <p align="center">
   <img src="/kotlin/assets/funcoes.PNG" alt="drawing" width="400"/>
 </p>
-
 ```kotlin
 fun sayHello (greeting:String, ItemToGreet:String) = println ("Hello $itemToGreet")
 ```
-Data Classes: Não é necessario implementar metodos get() e set()
+## Data Classes
+Não é necessario implementar metodos get() e set()
 ```kotlin
 data class User(val name: String, val age: Int)
 ```
+## Tipo nullable
 Tipo nullable (Int?); o valor default para o argumento:
 ```kotlin
 val age: Int? = null
 ```
+## Operador Elvis
 O operador Elvis (?:) devolve zero se age for null.:
 ```kotlin
 pessoas.map { it.age ?: 0 + 2}
+```
+## @JvmName
+Para mudar o nome da classe gerada contendo as funções de nível superior de kotlin, adione a anaotação @JvmName ao arquivo.
+```kotlin
+@file:JvmName("MotorCalculo")
+package motor
+fun calcular(...): String {...}
+
 ```
 ## enum 
 • Esse é um caso raro onde uma declaração em Kotlin usa mais palavras chave do que o correspondente em Java: *enum class* vs somente *enum* <br>
@@ -95,6 +105,28 @@ var temp  = obterTemperatura(Color.RED)
 println(temp)
 var mistura  = mix(Color.RED, Color.YELLOW)
 println(mistura)
+}
+```
+## For
+Podemos usar a mesma sintaxe de desempacotamento para iterar por uma coleção, ao mesmo tempo que controlamos o índice do item atual. Não é necessario criar uma variável apartada.
+```kotlin
+fun main()  {
+val list = arrayListOf("10", "11", "1001")
+
+for (element in list){
+    println("$element")
+}
+
+for ((index, element) in list.withIndex()){
+    println("$index: $element")
+}
+  /* 10
+   * 11
+   * 1001
+   * 0: 10
+   * 1: 11
+   * 2: 1001
+   */
 }
 ```
 ## Colletions:
@@ -162,4 +194,33 @@ internal object Solution {
 }
 
 data class Person(val name: String, val age: Int)
+```
+## Data Structure:
+<p align="center">
+  <img src="/kotlin/assets/data-structure.PNG" alt="drawing" width="400"/>
+</p>
+```kotlin
+fun main()  {
+    
+// Array List
+// dimensionado dinamicamente,com elementos sejam acessados diretamente.
+// Quando um elemento é adicionado, ele é colocado na matriz. Se o array não
+//  for grande o suficiente, um novo array maior é criado para substituir o
+//  antigo e o antigo é removido.
+val list = arrayListOf(1,1,2,3,5,8)
+
+// Linked List
+// A lista possui um link para o primeiro container e cada container possui 
+// um link para o próximo container na lista. 
+val list = ListOf(1,1,2,3,5,8)
+
+//Hash Set
+// é uma coleção de itens onde cada item é único
+val hash = hashSetOf(3,4,5)
+
+// Hash Map
+// armazene itens em pares "chave / valor", e você pode acessá-los por um índice de outro tipo
+val map = hashMapOf(1 to "um", 2 to "dois", 3 to "tres")
+
+}
 ```
