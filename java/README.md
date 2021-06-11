@@ -150,3 +150,33 @@ true
         return stack.empty();
     } 
 ```
+Palindrome:
+```java
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println(gameOfThrones("xuxa"));
+  }
+  static String gameOfThrones(String s) {
+    int impar = 0;
+    for (char c = 'a'; c <= 'z'; c++) {
+      if (min(c, s) % 2 != 0) {
+        impar++;
+      }
+      if (impar > 1) {
+
+        return "NO";
+      }
+    }
+    return "YES";
+  }
+  static int min(char c, String s) {
+    int count = 0;
+    for (int x = 0; x < s.length(); x++) {
+      if (s.charAt(x) == c) count++;
+    }
+    return count;
+  }
+}
+```
