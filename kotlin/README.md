@@ -31,9 +31,18 @@ Toda variável e toda expressão tem um tipo, e toda função tem um tipo de ret
 <p align="center">
   <img src="/kotlin/assets/funcoes.PNG" alt="drawing" width="400"/>
 </p>
+
 ```kotlin
 fun sayHello (greeting:String, ItemToGreet:String) = println ("Hello $itemToGreet")
 ```
+
+Quando chamamos uma função para criar uma lista, podemos passar qualquer quantidade de argumentos nela:
+```kotlin
+val list = listOf(2, 4, 6, 8)
+
+fun listOf<T>(vararg values: T) List<T> {....}
+```
+
 ## Data Classes
 Não é necessario implementar metodos get() e set()
 ```kotlin
@@ -44,11 +53,13 @@ Tipo nullable (Int?); o valor default para o argumento:
 ```kotlin
 val age: Int? = null
 ```
+
 ## Operador Elvis
 O operador Elvis (?:) devolve zero se age for null.:
 ```kotlin
 pessoas.map { it.age ?: 0 + 2}
 ```
+
 ## @JvmName
 Para mudar o nome da classe gerada contendo as funções de nível superior de kotlin, adione a anaotação @JvmName ao arquivo.
 ```kotlin
