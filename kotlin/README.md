@@ -25,7 +25,7 @@ val y = 2 //(final) immutable , is same as the final modifier in java
 val s: String = null //pode ser null
 val s2: String = "" // Não pode ser null
 val multLine = """|  /
-				  | /
+		  | /
                   |/ \ """
 ```
 ## Funções:
@@ -55,8 +55,7 @@ fun savePerson(person: Person ) {
                  fieldName: String){
         		if (value.isEmpty()){
                     throw IllegalArgumentException("Nao pode salver ${person.id}: empty $fieldName")
-                    println("Nao pode salver ${person.id}: empty $fieldName")
-                }
+                	}
     }
 }
 ```
