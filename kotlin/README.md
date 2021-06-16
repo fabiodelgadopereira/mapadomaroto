@@ -24,6 +24,9 @@ var x = 1 //general variable, assigned multiple times.
 val y = 2 //(final) immutable , is same as the final modifier in java
 val s: String = null //pode ser null
 val s2: String = "" // Não pode ser null
+val multLine = """|  /
+				  | /
+                  |/ \ """
 ```
 ## Funções:
 Toda variável e toda expressão tem um tipo, e toda função tem um tipo de retorno. Porém, para funções com corpo de expressão, o compilador é capaz de analisar a expressão usada como corpo da função e utilizar seu tipo como o tipo de retorno da função, mesmo quando ele não for digitado explicitamente. Esse tipo de análise geralmente é chamado de inferência de tipo (type inference)
@@ -41,6 +44,21 @@ Quando chamamos uma função para criar uma lista, podemos passar qualquer quant
 val list = listOf(2, 4, 6, 8)
 
 fun listOf<T>(vararg values: T) List<T> {....}
+```
+
+*Funções Locais*: são utilizadas para diminuir repetição de código e deixar mais  limpo a contrução
+```kotlin
+fun savePerson(person: Person ) {
+    // funcao dentro de funcao
+    fun validate (person: Person ,
+                 value: String,
+                 fieldName: String){
+        		if (value.isEmpty()){
+                    throw IllegalArgumentException("Nao pode salver ${person.id}: empty $fieldName")
+                    println("Nao pode salver ${person.id}: empty $fieldName")
+                }
+    }
+}
 ```
 
 ## Data Classes
@@ -140,6 +158,24 @@ for ((index, element) in list.withIndex()){
    */
 }
 ```
+## Interfases
+Interfaces contém definições de métodos abstratos e implementações de métodos não abstratos, mas não podem conter estados. Usamos a declaração abaixo para exemplificar a utilização de uma interfase em Kotlin. Usamos o modificador override para sobrescrever um método, de forma semelhante em JAVA.
+
+```kotlin
+interface Clickble {
+    fun click()
+}
+
+class Button : Clickble{
+    override fun click() = println("I was clicked")
+}
+
+fun main (){
+    val b= Button()
+    b.click()
+}
+```
+
 ## Colletions:
 ```kotlin
 internal object Solution {
