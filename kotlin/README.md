@@ -60,11 +60,20 @@ fun savePerson(person: Person ) {
 }
 ```
 
-## Data Classes
-Não é necessario implementar metodos get() e set()
+## Classes
+*Data* Não é necessario implementar metodos get() e set()
 ```kotlin
 data class User(val name: String, val age: Int)
 ```
+
+### Modificadores de classes:
+| Modificador | Membro correspondente                                     | Descrição                                                                                      |
+|-------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| final       | Não pode ser sobrescrito                                  | Default para membros da classe                                                                 |
+| open        | Pode ser sobrescrito                                      | Deve ser especificado explicitamente                                                           |
+| abstract    | Deve ser sobrescriito                                     | Pode ser usado apenas em classes abstratas; membros abastratos não podem ter uma implementação |
+| override    | Sobreve um membro de uma superclasse ou de uma interface  | O membro sobrescrito é aberto por padrão caso não esteja marcado com final                     |
+
 ## Tipo nullable
 Tipo nullable (Int?); o valor default para o argumento:
 ```kotlin
