@@ -74,6 +74,14 @@ data class User(val name: String, val age: Int)
 | abstract    | Deve ser sobrescriito                                     | Pode ser usado apenas em classes abstratas; membros abastratos não podem ter uma implementação |
 | override    | Sobreve um membro de uma superclasse ou de uma interface  | O membro sobrescrito é aberto por padrão caso não esteja marcado com final                     |
 
+### Modoficador de visibilidade em Kotlin
+| Modificador       | Membro da classe (Visível)  | Declaração de nível superior (Visível) |
+|-------------------|-----------------------------|----------------------------------------|
+| public (default)  | todos os lugares            | todos os lugares                       |
+| internal          | módulo                      | módulo                                 |
+| protected         | subclasses                  | ---                                    |
+| private           | uma classe                  | um arquivo                             |
+
 ## Tipo nullable
 Tipo nullable (Int?); o valor default para o argumento:
 ```kotlin
