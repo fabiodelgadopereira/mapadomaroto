@@ -61,7 +61,9 @@ fun savePerson(person: Person ) {
 ```
 
 ## Classes
-*Data* Não é necessario implementar metodos get() e set()
+
+### Classes de dados:
+Classe de repositório de dados, com implementação dos metodos: toString, equals e hashCode. 
 ```kotlin
 data class User(val name: String, val age: Int)
 ```
