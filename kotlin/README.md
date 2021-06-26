@@ -68,6 +68,50 @@ Classe de repositório de dados, com implementação dos metodos: toString, equa
 data class User(val name: String, val age: Int)
 ```
 
+### Classes abertas com metodos abertos:
+```kotlin
+// Classe aberta, outra clases podem herdar dela
+open class Button : Clickable {
+    fun disable() {
+        // função é final, não é possivel sobrescrevê-la em uma subclasse.
+    }
+    open fun animate() {
+        // função é aberta, pode ser sobrescrita
+    }
+    override fun click(){
+        // essa função sobrescreve uma função aberta
+    }
+}
+```
+
+### Classes aninhadas
+Uma classe aninhada em Kotlin sem modificadores explicitos é iugual auma classe aninhada static em Java. Utilize o modificador inner para transformar uma classe em interna de modo a ela contenha uma referência a uma classe externa.
+```kotlin
+class Outer {
+    private val bar: Int = 1
+    inner class Inner {
+        fun foo() = bar
+    }
+}
+
+val demo = Outer().Inner().foo() // == 1
+```
+
+### Declaração de objeto (Singleton)
+
+É comum em designe de sistemas orientados a objetos uma classe para a qual precisamos somente uma instância. Em Java, geralmente ela é implmentada como o padrão Singleton (private com campo estático para armazenar apenas uma instância)
+Em Kotlin, a declaração objeto prove uma implementação para uma única instância de classe.
+```kotlin
+object DataProviderManager {
+    fun registerDataProvider(provider: DataProvider) {
+        // ...
+    }
+
+    val allDataProviders: Collection<DataProvider>
+        get() = // ...
+}
+```
+
 ### Modificadores de classes:
 | Modificador | Membro correspondente                                     | Descrição                                                                                      |
 |-------------|-----------------------------------------------------------|------------------------------------------------------------------------------------------------|
