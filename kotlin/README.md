@@ -238,7 +238,10 @@ fun main (){
 }
 ```
 
-## Colletions:
+## Programação com lambdas:
+
+Expressões lambda são pequenos trechos de código que podem ser passadas para outras funções. Tem como obejtivo facilitar a estrutura de código comum em funções de bibliotecas, diminuindo a complexidade de leitura e reuso de código.
+
 ```kotlin
 internal object Solution {
     @Throws(Exception::class)
