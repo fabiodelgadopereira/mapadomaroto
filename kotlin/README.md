@@ -140,6 +140,35 @@ O operador Elvis (?:) devolve zero se age for null.:
 pessoas.map { it.age ?: 0 + 2}
 ```
 
+## Operador de chamada segura: `?.`
+O operador de chamada segura (sefe-call operator) ?., que permite combinar a verificação de null com uma chamada de método em uma única operação.
+
+```kotlin
+// Permitite verifica nulidade
+fruta?.toUpperCase()
+
+// Eh equivalente a:
+if(fruta != null) fruta.toUpperCase() else null
+```
+
+## Cast seguro para implementar equals
+O operador de cast seguro tenta fazer cast de um valor para um dado tipo e devolve null se o tipo for diferente.
+```kotlin
+fun isNumber(entrada: Any?): Boolean { 
+    val other = entrada as? Integer ?: return false 
+    return true    
+}
+```
+
+## Asserções de não null: `!!`
+Ao usar uma asserção de não null, podemos lançar explicitamente uma exceção se o valor for null
+```kotlin
+fun ignoreNulls( value : String? ){
+    val isNotNull: String = value!!
+    print(isNotNull.length)
+}
+```
+
 ## @JvmName
 Para mudar o nome da classe gerada contendo as funções de nível superior de kotlin, adione a anaotação @JvmName ao arquivo.
 ```kotlin
@@ -239,8 +268,9 @@ fun main (){
 ```
 
 ## Programação com lambdas:
-
 Expressões lambda são pequenos trechos de código que podem ser passadas para outras funções. Tem como obejtivo facilitar a estrutura de código comum em funções de bibliotecas, diminuindo a complexidade de leitura e reuso de código.
+Kotlin permite passar lambda fora de parenteses as funções e referências um parâmetro único da lambda como `it`.
+Podemos criar referências a métodos, construtores e propriedades  prefixando o nome da função com ` :: ` e passar essas referências a funções em vez de lambdas
 
 ```kotlin
 internal object Solution {
@@ -252,6 +282,10 @@ internal object Solution {
                 Person("Mark", 30),
                 Person("Will", 28),
                 Person("William", 28))
+
+        //Lista apenas com nomes de pessoas
+        //Mais informações em métodos Eager e Lazy
+        pessoas.map(Person::name)
 
         // forEach
         // imprimir todos os nomes da lista
@@ -300,12 +334,94 @@ internal object Solution {
         // Retorna true se nenhum dos elementos do fluxo corresponde ao predicado fornecido.
         println(pessoas.none { p: Person -> p.age > 20 })
 
-       // println(pessoas.max())
+        // println(pessoas.max())
+
+        //startsWith
+        //pesquisa nomes que comecam com a letra P
+        println(pessoas.filter{it.name.startsWith("P")}.toList())
+
+        //flatMap
+        // Duas funcoes: transforma (ou mapeia) cada elemento para uma colecao de acordo com a funcao
+        // dada como argumento e em seguida combina (serealiza) varias listas em uma so
+        val livros = listOf(Livro("Piano Mecanico", listOf("Kurt Vonnegut")),
+                       Livro("Va e venca", listOf("Paulo Storani")),
+                       Livro("Darwin sem frescura", listOf("Pirula","Reinaldo Jose Lopes")))
+    
+       println(livros.flatMap{it.autores}.toSet())
+       //resultado [Kurt Vonnegut, Paulo Storani, Pirula, Reinaldo Jose Lopes]
 
     }
 }
 
 data class Person(val name: String, val age: Int)
+data class Livro(val titulo: String, val autores: List<String>)
+```
+## Operação lazy em coleções: sequencias
+A avaliação eager executa cada operação em toda a coleção; a avaliação lazy processa os elementos um a um.
+
+```kotlin
+fun main() {
+    
+    val pessoas = listOf(Person("Paul", 24),
+                Person("Mark", 30),
+                Person("Will", 28),
+                Person("William", 28))
+    
+    // Eager (ávido)
+    pessoas.map(Person::name).filter{it.startsWith("P")}
+    
+    // Lazy (preguiçoso)
+    pessoas.asSequence().map(Person::name).filter{it.startsWith("P")}.toList()
+    
+}
+data class Person(val name: String, val age: Int)
+```
+## With
+A função with converte seu primeiro argumento em um receptor da lambda passada como o segundo argumento. Podemos acessar esse receptor por meio de uma referencia this. Essa instrução pode ser usada para executar diversas operaçoes no mesmo objeto sem repetir seu nome
+```kotlin
+fun main() {
+
+    // uso comum
+    fun alphabet(): String {
+        val result = StringBuilder()
+        for (letter in 'A'..'Z'){
+            result.append(letter)
+        }
+        return result.toString()
+    }
+
+    //uso com with para gerar o alfabeto
+    fun alphabet2() : String {
+        val stringBuilder = StringBuilder()
+        return with(stringBuilder){
+         for (letter in 'A'..'Z'){
+                this.append(letter)
+            }
+         this.toString()
+        }
+    }
+
+    //uso com with em um corpo de expressão para gerar o alfabeto
+    fun alphabet3() = with(StringBuilder()){
+         for (letter in 'A'..'Z'){
+                append(letter)
+        }
+        toString()
+    }
+}
+```
+## Apply
+A função apply fuciona quase do mesmo modo que with, a única diferença é que apply devolve o objeto passado para ele como argumento (em outras palavras, o objeto receptor)_
+```kotlin
+fun main() {
+
+    //uso com apply
+    fun alphabet() = StringBuilder().apply{
+         for (letter in 'A'..'Z'){
+                append(letter)
+        }
+    }.toString()
+}
 ```
 ## Data Structure:
 <p align="center">
