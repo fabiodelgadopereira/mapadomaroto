@@ -151,7 +151,7 @@ fruta?.toUpperCase()
 if(fruta != null) fruta.toUpperCase() else null
 ```
 
-## Cast seguro para implementar equals
+## cast seguro para implementar equals
 O operador de cast seguro tenta fazer cast de um valor para um dado tipo e devolve null se o tipo for diferente.
 ```kotlin
 fun isNumber(entrada: Any?): Boolean { 
@@ -452,4 +452,41 @@ val hash = hashSetOf(3,4,5)
 val map = hashMapOf(1 to "um", 2 to "dois", 3 to "tres")
 
 }
+```
+## Serialização de JSON
+Solução leve que utiliza kotlin puro.
+build.gradle.kts
+```kotlin
+plugins {
+    `java-library`
+}
+repositories {
+    mavenCentral()
+    jcenter()
+}
+dependencies {
+    // https://mvnrepository.com/artifact/com.beust/klaxon
+    implementation("com.beust:klaxon:4.0.2")
+}
+
+```
+
+```kotlin
+package sample
+
+import com.beust.klaxon.Klaxon
+
+fun main() {
+
+        val student = Klaxon()
+            .parse < Person > (""" 
+                {
+                    "name": "John Smith",
+                    "age": 23
+                }
+                """)
+
+                print(student?.name)
+            }
+class Person(val name: String, val age: Int)
 ```
