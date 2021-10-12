@@ -139,6 +139,17 @@ O operador Elvis (?:) devolve zero se age for null.:
 ```kotlin
 pessoas.map { it.age ?: 0 + 2}
 ```
+Exemplo de metodo
+```kotlin
+fun isValid (obj : Any?): Boolean {
+    
+    if (obj == null ) return false // valida se eh nullo
+	if (obj !is String) return false // valida se eh String
+	if (obj.equals("No")) return false // condicao de valor indesejado
+    
+    return true
+}
+```
 
 ## Operador de chamada segura: `?.`
 O operador de chamada segura (sefe-call operator) ?., que permite combinar a verificação de null com uma chamada de método em uma única operação.
