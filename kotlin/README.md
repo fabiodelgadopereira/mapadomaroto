@@ -501,3 +501,41 @@ fun main() {
             }
 class Person(val name: String, val age: Int)
 ```
+## JetBrains / Exposed & sqlserver
+
+Exposed é uma biblioteca de código aberto (licença Apache) desenvolvida pela JetBrains, que fornece uma API Kotlin idiomática para algumas implementações de banco de dados relacional, ao mesmo tempo que elimina as diferenças entre os fornecedores de banco de dados.
+
+pom.xml
+```xml
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-core</artifactId>
+            <version>0.35.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-jdbc</artifactId>
+            <version>0.35.3</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>6.4.0.jre7</version>
+        </dependency>
+```
+Exemplo de implementação
+```kotlin
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.transactions.TransactionManager
+import org.jetbrains.exposed.sql.transactions.transaction
+
+fun main() {
+    Database.connect("jdbc:sqlserver://localhost:32768;databaseName=test", "com.microsoft.sqlserver.jdbc.SQLServerDriver", 
+                 user = "root", password = "your_pwd") 
+
+    transaction {
+        TransactionManager.current().exec("select @@version") { it.next(); print(it.getString(1)) }
+    }
+}
+```
