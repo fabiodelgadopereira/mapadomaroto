@@ -539,3 +539,47 @@ fun main() {
     }
 }
 ```
+## Corotinies
+Coroutines são em sua essência threads mais leves que consomem menos recursos computacionais e que são destinadas a execução de tarefas paralelas e não bloqueantes. As coroutines podem ser executadas em determinados contextos de acordo com o tipo de operação a ser executada, seja manipulando operações de I/O, processamento que envolve CPU ou manipulação de eventos de UI.
+
+pom.xml
+```xml
+  <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>1.5.2</version>
+    </dependency>
+```
+Exemplo de implementação
+Espera o retorno das duas rotinas rodando em paralelo e realiza uma operacao com os retornos.
+```kotlin
+import kotlinx.coroutines.*
+
+suspend fun main() = coroutineScope {
+    var x = 0
+    var y = 0
+
+        val one = async() {
+            x = bigProcess()
+            println("x="+x)
+
+        }
+        val two = async() {
+            y = bigProcess()
+            println("y="+y)
+        }
+
+        // when
+        runBlocking {
+            one.await()
+            two.await()
+        }
+    println ("x="+x+" y="+y)
+    }
+
+suspend fun bigProcess(): Int {
+    var n = (0..100).random()
+    delay(n.toLong()*100)
+    return n
+}
+```
