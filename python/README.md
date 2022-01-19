@@ -65,3 +65,7 @@ for indice in range (entrada):
     else:
         print ("Not found")
 ```
+## Bash
+```python
+python -c ' import math;   print(math.sqrt(0)) '
+```
