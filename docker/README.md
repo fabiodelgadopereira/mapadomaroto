@@ -1,4 +1,4 @@
-To create a Docker image locally that displays a simple HTML page, you can follow these steps:
+# To create a Docker image locally that displays a simple HTML page, you can follow these steps:
 
 ## 1. Create a new directory for your project and navigate to it:
 ```bash
@@ -49,7 +49,7 @@ You should see a "Hello, World!" heading displayed on the page.
 
 Note: You can customize the HTML page by modifying the index.html file and rebuilding the Docker image.
 
-T## roubleshooting
+## Troubleshooting
 
 Add your user to the docker group:
 ```bash
