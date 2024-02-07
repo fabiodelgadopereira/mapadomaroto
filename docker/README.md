@@ -60,3 +60,23 @@ How to fix "dial unix /var/run/docker.sock: connect: permission denied" when gro
 ```bash
 sudo setfacl --modify user:$USER:rw /var/run/docker.sock
 ```
+
+Stop all the containers
+```bash
+docker stop $(docker ps -a -q)
+```
+
+Remove all the containers
+```bash
+docker rm $(docker ps -a -q)
+```
+
+“Process Status”, shows all of the Docker processes actively running.
+```bash
+docker ps -a
+```
+
+List all ports
+```bash
+lsof -i -P -n
+```

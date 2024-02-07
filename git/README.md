@@ -8,6 +8,17 @@ Switch branch
 git checkout dev
 ```
 
+push to specific branch
+```bash
+git push --set-upstream origin dev
+```
+
+remove
+```bash
+git rm file
+```
+
+
 git config list
 ```bash
 git config -l
